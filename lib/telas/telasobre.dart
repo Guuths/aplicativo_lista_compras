@@ -46,7 +46,7 @@ class PaginaSobre extends StatelessWidget {
             tooltip: 'Retornar à página anterior',
             child: const Icon(Icons.arrow_back),
           ),
-          const SizedBox(width: 16), // Espaçamento entre os botões
+          const SizedBox(width: 16), // espaço dos botões
           FloatingActionButton(
             onPressed: () {
               Navigator.push(
