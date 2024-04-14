@@ -18,28 +18,15 @@ class PaginaSobre extends StatelessWidget {
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 70, 184, 236),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text(
-                'Retornar à lista',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: 20),
+            Text(
               'Aplicativo desenvolvido para atuar como lista de compras. Auxiliando na hora para o indivíduo não esquecer nenhum item.',
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -49,15 +36,28 @@ class PaginaSobre extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AutencicacaoTela()),
-          );
-        },
-        tooltip: 'Sair',
-        child: const Icon(Icons.exit_to_app),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            tooltip: 'Retornar à página anterior',
+            child: const Icon(Icons.arrow_back),
+          ),
+          const SizedBox(width: 16), // Espaçamento entre os botões
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AutencicacaoTela()),
+              );
+            },
+            tooltip: 'Sair',
+            child: const Icon(Icons.exit_to_app),
+          ),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: const BottomAppBar(
@@ -66,12 +66,12 @@ class PaginaSobre extends StatelessWidget {
           padding: EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children:[
+            children: [
               Text(
                 'Desenvolvido por Gustavo Henrique P. C. Victal',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Color.fromARGB(255, 73, 73, 73),
+                  color: Color.fromARGB(255, 51, 51, 51),
                 ),
               ),
             ],
