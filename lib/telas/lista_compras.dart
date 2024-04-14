@@ -29,7 +29,7 @@ class PaginaListaComprasState extends State<PaginaListaCompras> {
           decoration: const InputDecoration(
             hintText: 'Pesquisar por itens',
             hintStyle: TextStyle(color: Color.fromARGB(255, 151, 151, 151)),
-            border: InputBorder.none,
+            border: UnderlineInputBorder(),
           ),
           onChanged: _filtrarItens,
         ),
