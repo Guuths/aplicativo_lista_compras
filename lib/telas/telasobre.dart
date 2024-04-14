@@ -9,7 +9,7 @@ class PaginaSobre extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sobre'),
-        backgroundColor: const Color.fromARGB(255, 238, 238, 238),
+        backgroundColor: Color.fromARGB(255, 236, 236, 236),
       ),
       backgroundColor: const Color.fromARGB(255, 70, 184, 236),
       body: Padding(
