@@ -1,0 +1,155 @@
+import 'package:flutter/material.dart';
+
+class PaginaListaCompras extends StatefulWidget {
+  const PaginaListaCompras ({super.key});
+  
+  @override
+  _PaginaListaComprasState createState() => _PaginaListaComprasState();
+}
+
+class _PaginaListaComprasState extends State<PaginaListaCompras> {
+  List<ItemLista> _itens = [];
+
+  TextEditingController _controller = TextEditingController();
+  int _indexEditar;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lista de Compras'),
+      ),
+      body: _construirListaItens(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _adicionarItem(context);
+        },
+        tooltip: 'Adicionar Item',
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget _construirListaItens() {
+    return ListView.builder(
+      itemCount: _itens.length,
+      itemBuilder: (context, index) {
+        final item = _itens[index];
+        return Card(
+          elevation: 4,
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: ListTile(
+            title: Text(
+              item.nome,
+              style: TextStyle(
+                decoration: item.comprado ? TextDecoration.lineThrough : null,
+              ),
+            ),
+            trailing: Checkbox(
+              value: item.comprado,
+              onChanged: (value) {
+                setState(() {
+                  _itens[index].comprado = value!;
+                });
+              },
+            ),
+            onTap: () {
+              _indexEditar = index;
+              _controller.text = item.nome;
+              _editarItem(context, item.nome);
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  Future _adicionarItem(BuildContext context) async {
+    final novoItem = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        String novoItemNome = '';
+        return AlertDialog(
+          title: Text('Adicionar Item'),
+          content: TextField(
+            onChanged: (value) {
+              novoItemNome = value;
+            },
+            decoration: InputDecoration(hintText: 'Nome do item'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Adicionar'),
+              onPressed: () {
+                Navigator.of(context).pop(novoItemNome);
+              },
+            ),
+          ],
+        );
+      },
+    );
+
+    if (novoItem != null && novoItem.isNotEmpty) {
+      setState(() {
+        _itens.add(ItemLista(nome: novoItem));
+      });
+    }
+  }
+
+  Future _editarItem(BuildContext context, String item) async {
+    final novoItem = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Editar Item'),
+          content: TextField(
+            controller: _controller,
+            onChanged: (value) {
+              item = value;
+            },
+            decoration: InputDecoration(hintText: 'Nome do item'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Salvar'),
+              onPressed: () {
+                Navigator.of(context).pop(item);
+              },
+            ),
+          ],
+        );
+      },
+    );
+
+    if (novoItem != null && novoItem.isNotEmpty) {
+      setState(() {
+        _itens[_indexEditar].nome = novoItem;
+      });
+    }
+  }
+}
+
+class ItemLista {
+  String nome;
+  bool comprado;
+
+  ItemLista({required this.nome, this.comprado = false});
+}
