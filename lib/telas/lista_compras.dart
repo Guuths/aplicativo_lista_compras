@@ -46,7 +46,7 @@ class PaginaListaComprasState extends State<PaginaListaCompras> {
             tooltip: 'Adicionar Item',
             child: const Icon(Icons.add),
           ),
-         const SizedBox(width: 16), // Espaçamento entre os botões
+         const SizedBox(width: 16), // espaço botoes
           FloatingActionButton(
             onPressed: () {
               Navigator.pop(context);
@@ -54,7 +54,7 @@ class PaginaListaComprasState extends State<PaginaListaCompras> {
             tooltip: 'Sair',
             child: const Icon(Icons.exit_to_app),
           ),
-          const SizedBox(width: 16), // Espaçamento entre os botões
+          const SizedBox(width: 16), // espaço botoes
           FloatingActionButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {return PaginaSobre();}),);
