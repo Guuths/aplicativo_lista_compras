@@ -25,7 +25,7 @@ class PaginaSobre extends StatelessWidget {
             ),
             const SizedBox(height: 20),
            const Text(
-              'Descrição:',
+              'Aplicativo desenvolvido para atuar como lista de compras. Auxiliando na hora para o individuo não esquecer nenhum item.',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
