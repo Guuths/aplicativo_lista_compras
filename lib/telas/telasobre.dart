@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lista_compras/telas/autenticacao_tela.dart';
 
 class PaginaSobre extends StatelessWidget {
-  const PaginaSobre({Key? key});
+  const PaginaSobre({super.key});
 
   @override
   Widget build(BuildContext context) {
